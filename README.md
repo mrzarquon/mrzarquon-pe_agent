@@ -11,7 +11,6 @@
 4. [Usage - Configuration options and additional functionality](#usage)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
-6. [Development - Guide for contributing to the module](#development)
 
 ##Overview
 
@@ -47,7 +46,7 @@ The following parameters are available in the ntp module:
 
 Path to the puppet.conf file (defaults to /etc/puppetlabs/puppet/puppet.conf)
 
-####`package\_ensure`
+####`package_ensure`
 
 Version of pe-agent to ensure, by default this is set to latest, and uses the 'current'
 package repository on the master. *this will auto upgrade agents if master is updated*
