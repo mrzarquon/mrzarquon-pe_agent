@@ -14,7 +14,7 @@ class pe_agent::config inherits pe_agent {
       path    => $config,
       section => 'main',
       setting => 'server',
-      value   => "$agent_server",
+      value   => $agent_server,
       require => File[$config],
     }
   }
@@ -25,7 +25,7 @@ class pe_agent::config inherits pe_agent {
       path    => $config,
       section => 'main',
       setting => 'ca_server',
-      value   => "$agent_caserver",
+      value   => $agent_caserver,
       require => File[$config],
     }
   }
@@ -36,7 +36,7 @@ class pe_agent::config inherits pe_agent {
       path    => $config,
       section => 'agent',
       setting => 'environment',
-      value   => "$agent_environment",
+      value   => $agent_environment,
       require => File[$config],
     }
   }
