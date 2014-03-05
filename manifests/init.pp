@@ -16,8 +16,8 @@ class pe_agent (
   validate_string($agent_caserver)
   validate_string($agent_environment)
 
-  include pe_agent::install
-  include pe_agent::config
-  include pe_agent::service
+  class { '::pe_agent::install': } ->
+  class { '::pe_agent::config': } ->
+  class { '::pe_agent::service': }
 
 }

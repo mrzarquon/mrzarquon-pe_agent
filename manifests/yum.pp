@@ -1,6 +1,6 @@
 class pe_agent::yum inherits pe_agent {
   if $package_ensure == 'latest' {
-    $package_version = "current"
+    $package_version = 'current'
   } else {
     $package_version = $package_ensure
   }
