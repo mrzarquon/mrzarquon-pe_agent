@@ -2,8 +2,8 @@ class pe_agent::config inherits pe_agent {
 
   file { $config:
     ensure  => file,
-    owner   => pe-puppet,
-    group   => pe-puppet,
+    owner   => 'pe-puppet',
+    group   => 'pe-puppet',
     mode    => 0600,
     require => Package['pe-agent'],
   }
