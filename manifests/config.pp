@@ -12,7 +12,7 @@ class pe_agent::config inherits pe_agent {
     ini_setting { "agent_server":
       ensure  => present,
       path    => $config,
-      section => 'agent',
+      section => 'main',
       setting => 'server',
       value   => "$agent_server",
       require => File[$config],
@@ -23,20 +23,20 @@ class pe_agent::config inherits pe_agent {
     ini_setting { "agent_caserver":
       ensure  => present,
       path    => $config,
-      section => 'agent',
+      section => 'main',
       setting => 'ca_server',
-      value   => "$agent_server",
+      value   => "$agent_caserver",
       require => File[$config],
     }
   }
 
-  if $agent_server != 'nil' {
+  if $agent_environment != 'nil' {
     ini_setting { "agent_environment":
       ensure  => present,
       path    => $config,
       section => 'agent',
       setting => 'environment',
-      value   => "$agent_server",
+      value   => "$agent_environment",
       require => File[$config],
     }
   }

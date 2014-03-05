@@ -6,7 +6,7 @@ class pe_agent (
   $agent_server = $pe_agent::params::agent_servername,
   $agent_caserver = $pe_agent::params::agent_caservername,
   $agent_environment = $pe_agent::params::agent_environment,
-) inherits ntp::params {
+) inherits pe_agent::params {
 
   validate_absolute_path($config)
   validate_string($package_ensure)

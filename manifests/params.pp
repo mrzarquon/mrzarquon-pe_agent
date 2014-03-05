@@ -5,7 +5,7 @@ class pe_agent::params {
   else {
     $config = '/etc/puppetlabs/puppet/puppet.conf'
   }
-  $package_ensure = $::serverversion
+  $package_ensure = 'latest'
   $repo_yum = $::servername
   $repo_apt = $::servername
   $agent_server = 'nil'
