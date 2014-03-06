@@ -50,6 +50,20 @@ package repository on the master. *this will auto upgrade agents if master is up
 If you specify a version number, it may cause issues with general vs specific version
 differences (ie 3.2.0 vs 3.2.0.el6.1).
 
+####`repo_yum` & `repo_apt`
+
+Hostname of yum repository with pe-agent packages on it, assumes the hostname is of a PE master
+with the pe_repo class properly applied to it.
+
+
+####`agent_server` & `agent_caserver` & `agent_environment`
+
+Sets the server, ca_server and environment settings on the agents puppet.conf file.
+
+Defaults to nil and does not manage the settings unless overridden in node classification.
+
+
+
 ##Limitations
 
 This module has been tested only on upgrading EL 6 3.1 agent to 3.2, note lack of 
