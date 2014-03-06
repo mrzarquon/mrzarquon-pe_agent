@@ -4,7 +4,7 @@
 
 1. [Overview](#overview)
 2. [Module Description - What the module does and why it is useful](#module-description)
-3. [Setup - The basics of getting started with ntp](#setup)
+3. [Setup - The basics of getting started with pe_agent](#setup)
 4. [Usage - Configuration options and additional functionality](#usage)
 5. [Limitations - OS compatibility, etc.](#limitations)
 
