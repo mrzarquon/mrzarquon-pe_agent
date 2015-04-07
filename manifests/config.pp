@@ -14,7 +14,7 @@ class pe_agent::config inherits pe_agent {
         ensure => file,
       }
     }
-    default: {}
+    default: {
       file { $config:
         ensure => file,
         owner  => 'pe-puppet',
