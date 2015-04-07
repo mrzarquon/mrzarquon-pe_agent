@@ -53,8 +53,8 @@ differences (ie 3.2.0 vs 3.2.0.el6.1).
 
 ####`master`
 
-Hostname of yum repository with pe-agent packages on it, assumes the hostname is of a PE master
-with the pe_repo class properly applied to it.  Defaults to the PE master that compiled
+Hostname of apt/yum repository with pe-agent packages on it, assumes the hostname is of a PE master
+with the required pe_repo classes properly applied to it.  Defaults to the PE master that compiled
 the agent's catalog.
 
 ####`agent_server` & `agent_caserver` & `agent_environment`
