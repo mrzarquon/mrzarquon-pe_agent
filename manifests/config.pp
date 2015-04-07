@@ -38,6 +38,13 @@ class pe_agent::config inherits pe_agent {
     }
   }
 
+  if $agent_fileserver != 'nil' {
+    ini_setting { 'agent_fileserver':
+      setting => 'archive_file_server',
+      value   => $agent_fileserver,
+    }
+  }
+
   if $agent_environment != 'nil' {
     ini_setting { 'agent_environment':
       section => 'agent',
