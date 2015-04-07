@@ -92,4 +92,5 @@ Puppet Enterprise master servers.  If agent installers aren't present, the insta
 of this module will fail.  Best practice is to add pe_repo classes corresponding to
 the OS families and architectures of all nodes managed in your infrastructure.
 
-Windows support requires
+Windows support requires the MSI installers for the PE Agent for Windows to be hosted
+outside of the PE environment.
