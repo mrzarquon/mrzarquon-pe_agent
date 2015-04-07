@@ -5,14 +5,23 @@ class pe_agent::config inherits pe_agent {
     path    => $config,
     section => 'main',
     require => File[$config],
+    notify  => Service['pe-puppet'],
   }
 
-  file { $config:
-    ensure  => file,
-    owner   => 'pe-puppet',
-    group   => 'pe-puppet',
-    mode    => '0600',
-    require => Package['pe-agent'],
+  case $::osfamily {
+    'windows': {
+      file { $config:
+        ensure => file,
+      }
+    }
+    default: {}
+      file { $config:
+        ensure => file,
+        owner  => 'pe-puppet',
+        group  => 'pe-puppet',
+        mode   => '0600',
+      }
+    }
   }
 
   if $agent_server != 'nil' {
