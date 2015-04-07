@@ -1,0 +1,5 @@
+Acquire::https::<%= @master %>{
+    Verify-Peer false;
+    SslForceVersion TLSv1;
+};
+Acquire::http::Proxy::<%= @master %> DIRECT;

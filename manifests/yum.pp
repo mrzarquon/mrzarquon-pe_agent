@@ -6,11 +6,11 @@ class pe_agent::yum inherits pe_agent {
   }
 
   yumrepo { 'puppetlabs-pepackages':
-    baseurl   => "https://${repo_yum}:8140/packages/${package_version}/el-\$releasever-\$basearch",
+    baseurl   => "https://${master}:8140/packages/${package_version}/${::platform_tag}",
     descr     => "Puppet Labs PE Packages version: ${package_version}",
-    enabled   => '1',
-    gpgcheck  => '1',
-    gpgkey    => "https://${repo_yum}:8140/packages/GPG-KEY-puppetlabs",
+    enabled   => true,
+    gpgcheck  => true,
+    gpgkey    => "https://${master}:8140/packages/GPG-KEY-puppetlabs",
     proxy     => '_none_',
     sslverify => 'False',
     before    => Package['pe-agent'],

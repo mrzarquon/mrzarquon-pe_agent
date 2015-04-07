@@ -10,11 +10,11 @@
 
 ##Overview
 
-The pe\_agent module installs, configures and manages the Puppet Enterprise Agent's pe-puppet service (the pe-mcollective components are managed by a different module).
+The pe\_agent module installs, configures and manages the Puppet Enterprise Agent software and the pe-puppet service (the pe-mcollective components are managed by a different module).
 
 ##Module Description
 
-The pe\_agent module is dependent on the PE Package Repositories available on any Puppet Enterprise Master version 3.2 or greater. This module was designed so that PE users who have recently upgraded to PE 3.2 can now easily upgrade their > 3.2 PE agents.
+The pe\_agent module is dependent on the PE Package Repositories (pe_repo classes) available on any Puppet Enterprise Master version 3.2 or greater. This module was designed so that PE users can easily upgrade their managed PE agents after a version upgrade of a deployment's PE server(s).
 
 ##Setup
 
@@ -31,12 +31,13 @@ The pe\_agent module is dependent on the PE Package Repositories available on an
 ```puppet
 class { '::pe_agent':
   agent_caserver => 'puppetca.company.lan',
+  windows_source => '\\myfileserver\pe-agent'
 }
 ```
 
 ###Parameters
 
-The following parameters are available in the ntp module:
+The following parameters are available in the pe_agent module:
 
 ####`config`
 
@@ -50,11 +51,11 @@ package repository on the master. *this will auto upgrade agents if master is up
 If you specify a version number, it may cause issues with general vs specific version
 differences (ie 3.2.0 vs 3.2.0.el6.1).
 
-####`repo_yum` & `repo_apt`
+####`master`
 
-Hostname of yum repository with pe-agent packages on it, assumes the hostname is of a PE master
-with the pe_repo class properly applied to it.
-
+Hostname of apt/yum repository with pe-agent packages on it, assumes the hostname is of a PE master
+with the required pe_repo classes properly applied to it.  Defaults to the PE master that compiled
+the agent's catalog.
 
 ####`agent_server` & `agent_caserver` & `agent_environment`
 
@@ -62,10 +63,37 @@ Sets the server, ca_server and environment settings on the agents puppet.conf fi
 
 Defaults to nil and does not manage the settings unless overridden in node classification.
 
+####`staging_dir`
+
+The directory that will be used on AIX and Solaris hosts to temporarily hold the
+PE Agent installation files.  This defaults to PE's default: /tmp/puppet-enterprise-installer
+
+####`windows_source`
+
+A UNC path to a publicly-readable SMB share that contains the PE Agent for Windows
+MSI files.  Ensure that both 32-bit and 64-bit installers are hosted there; the
+default file names are assumed.  The author recommends the use of Distributed File
+Services (DFS) namespaces with multiple folder targets to efficiently provide a single
+UNC path to the files for multi-site deployments.
+
+####`version`
+
+The desired version of the PE agent to install.  This is applicable to the AIX,
+Solaris, and Windows agents since they don't support package => latest.  This
+defaults to the version of PE on the agent (which means agent upgrades are armed
+unless a newer version is set in the class declaration or hieradata).
+
 
 
 ##Limitations
 
-This module has been tested only on upgrading EL 6 3.1 agent to 3.2, note lack of 
-tests folder or spec tests, and the 0.0.X status :-D
+This module depends completely on the correct pe_repo classes being added to the target
+Puppet Enterprise master servers.  If agent installers aren't present, the install class
+of this module will fail.  Best practice is to add pe_repo classes corresponding to
+the OS families and architectures of all nodes managed in your infrastructure.
 
+Windows support requires the MSI installers for the PE Agent for Windows to be hosted
+outside of the PE environment.
+
+AIX, Debian, RedHat, and Windows OS Families have been tested.  Solaris testing is in
+progress.
