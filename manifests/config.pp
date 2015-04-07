@@ -1,6 +1,13 @@
 class pe_agent::config inherits pe_agent {
 
-  file { "${config}":
+  Ini_setting {
+    ensure  => present,
+    path    => $config,
+    section => 'main',
+    require => File[$config],
+  }
+
+  file { $config:
     ensure  => file,
     owner   => 'pe-puppet',
     group   => 'pe-puppet',
@@ -10,34 +17,23 @@ class pe_agent::config inherits pe_agent {
 
   if $agent_server != 'nil' {
     ini_setting { 'agent_server':
-      ensure  => present,
-      path    => $config,
-      section => 'main',
       setting => 'server',
       value   => $agent_server,
-      require => File[$config],
     }
   }
 
   if $agent_caserver != 'nil' {
     ini_setting { 'agent_caserver':
-      ensure  => present,
-      path    => $config,
-      section => 'main',
       setting => 'ca_server',
       value   => $agent_caserver,
-      require => File[$config],
     }
   }
 
   if $agent_environment != 'nil' {
     ini_setting { 'agent_environment':
-      ensure  => present,
-      path    => $config,
       section => 'agent',
       setting => 'environment',
       value   => $agent_environment,
-      require => File[$config],
     }
   }
 }

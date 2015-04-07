@@ -5,8 +5,9 @@
 # if the platform doesn't support a repository, it
 # is skipped
 class pe_agent::repo inherits pe_agent {
-  case $osfamily {
+  case $::osfamily {
     'RedHat': { contain pe_agent::yum }
     'Debian': { contain pe_agent::apt }
+    default:  {}
   }
 }

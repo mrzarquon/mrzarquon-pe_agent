@@ -1,0 +1,41 @@
+#!/bin/bash -e
+
+download_file() {
+  source_file="https://<%= @master %>:8140/packages/current/<%= @platform_tag %>/${1?}"
+  if hash curl >&/dev/null; then
+    curl --tlsv1 -sk "${source_file?}" -o "<%= staging_dir %>/${1?}"
+  elif hash wget >&/dev/null; then
+    wget --secure-protocol=TLSv1 --no-check-certificate --quiet "${source_file?}" -O "<%= staging_dir %>/${1?}"
+  else
+    echo "Couldn't find curl or wget; unable to continue" >&2
+    exit 1
+  fi
+}
+
+download_packages() {
+  download_file "packages.txt"
+  download_file "solaris-noask"
+
+  for pkg in $(cat "<%= staging_dir %>/packages.txt"); do
+    download_file "${pkg?}"
+  done
+}
+
+install_packages() {
+  for pkg in $(cat "<%= staging_dir %>/packages.txt"); do
+    gzip -dc "<%= staging_dir %>/${pkg?}" | pkgadd -G -a "<%= staging_dir %>/solaris-noask" -n -d /dev/stdin all
+  done
+}
+
+install_agent() {
+
+  download_packages
+
+  install_packages
+
+  /opt/puppet/bin/puppet resource service pe-puppet ensure=running enable=true
+  /opt/puppet/bin/puppet resource service pe-mcollective ensure=running enable=true
+
+}
+
+install_agent "$@"

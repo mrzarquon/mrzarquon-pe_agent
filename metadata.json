@@ -1,0 +1,15 @@
+{
+  "name": "mrzarquon-pe_agent",
+  "version": "0.1.0",
+  "author": "mrzarquon",
+  "summary": "Management of Puppet Enterprise agent.",
+  "license": "Apache 2.0",
+  "source": "https://github.com/mrzarquon/mrzarquon-pe_agent",
+  "project_page": "https://github.com/mrzarquon/mrzarquon-pe_agent",
+  "issues_url": "https://github.com/mrzarquon/mrzarquon-pe_agent/issues",
+  "dependencies": [
+    {"name":"puppetlabs-apt","version_requirement":">= 1.4.0"}
+    {"name":"puppetlabs-inifile","version_requirement":">= 1.0.0"}
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ]
+}

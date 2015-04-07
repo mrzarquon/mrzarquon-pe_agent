@@ -10,11 +10,11 @@
 
 ##Overview
 
-The pe\_agent module installs, configures and manages the Puppet Enterprise Agent's pe-puppet service (the pe-mcollective components are managed by a different module).
+The pe\_agent module installs, configures and manages the Puppet Enterprise Agent software and the pe-puppet service (the pe-mcollective components are managed by a different module).
 
 ##Module Description
 
-The pe\_agent module is dependent on the PE Package Repositories available on any Puppet Enterprise Master version 3.2 or greater. This module was designed so that PE users who have recently upgraded to PE 3.2 can now easily upgrade their > 3.2 PE agents.
+The pe\_agent module is dependent on the PE Package Repositories (pe_repo classes) available on any Puppet Enterprise Master version 3.2 or greater. This module was designed so that PE users can easily upgrade their managed PE agents after a version upgrade of a deployment's PE server(s).
 
 ##Setup
 
@@ -36,7 +36,7 @@ class { '::pe_agent':
 
 ###Parameters
 
-The following parameters are available in the ntp module:
+The following parameters are available in the pe_agent module:
 
 ####`config`
 
@@ -50,11 +50,11 @@ package repository on the master. *this will auto upgrade agents if master is up
 If you specify a version number, it may cause issues with general vs specific version
 differences (ie 3.2.0 vs 3.2.0.el6.1).
 
-####`repo_yum` & `repo_apt`
+####`master`
 
 Hostname of yum repository with pe-agent packages on it, assumes the hostname is of a PE master
-with the pe_repo class properly applied to it.
-
+with the pe_repo class properly applied to it.  Defaults to the PE master that compiled
+the agent's catalog.
 
 ####`agent_server` & `agent_caserver` & `agent_environment`
 
@@ -66,6 +66,5 @@ Defaults to nil and does not manage the settings unless overridden in node class
 
 ##Limitations
 
-This module has been tested only on upgrading EL 6 3.1 agent to 3.2, note lack of 
+This module has been tested only on upgrading EL 6 3.1 agent to 3.2, note lack of
 tests folder or spec tests, and the 0.0.X status :-D
-
