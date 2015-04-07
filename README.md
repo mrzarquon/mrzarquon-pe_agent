@@ -31,6 +31,7 @@ The pe\_agent module is dependent on the PE Package Repositories (pe_repo classe
 ```puppet
 class { '::pe_agent':
   agent_caserver => 'puppetca.company.lan',
+  windows_source => '\\myfileserver\pe-agent'
 }
 ```
 

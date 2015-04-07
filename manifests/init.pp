@@ -20,6 +20,9 @@ class pe_agent (
   $agent_server = $pe_agent::params::agent_servername,
   $agent_caserver = $pe_agent::params::agent_caservername,
   $agent_environment = $pe_agent::params::agent_environment,
+  $staging_dir = $pe_agent::params::staging_dir,
+  $windows_source = $pe_agent::params::windows_source,
+  $version = $pe_agent::params::version,
 ) inherits pe_agent::params {
 
   validate_absolute_path($config)

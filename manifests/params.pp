@@ -12,7 +12,8 @@
 # - $agent_environment: desired default environment
 # - $staging_dir: temp directory to use on AIX/Solaris
 # - $windows_source: UNC path to file share hosting Windows PE MSI installers
-# - $windows_version: must pass version number for PE windows package provider
+# - $version: must pass version number for PE windows package provider and AIX
+#   and Solaris install methods - defaults to PE master version
 #
 # Actions:
 #
@@ -41,5 +42,5 @@ class pe_agent::params {
   $agent_environment = 'production'
   $staging_dir = '/tmp/puppet-enterprise-installer'
   $windows_source = 'nil'
-  $windows_version = $::serverversion
+  $version = $::serverversion
 }
