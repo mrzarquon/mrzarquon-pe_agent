@@ -63,6 +63,26 @@ Sets the server, ca_server and environment settings on the agents puppet.conf fi
 
 Defaults to nil and does not manage the settings unless overridden in node classification.
 
+####`staging_dir`
+
+The directory that will be used on AIX and Solaris hosts to temporarily hold the
+PE Agent installation files.  This defaults to PE's default:
+
+  /tmp/puppet-enterprise-installer
+
+####`windows_source`
+
+A UNC path to a publicly-readable SMB share that contains the PE Agent for Windows
+MSI files.  Ensure that both 32-bit and 64-bit installers are hosted there; the 
+default file names are assumed.
+
+####`version`
+
+The desired version of the agent to install.  This is applicable to the AIX,
+Solaris, and Windows agents since they don't support package => latest.  This
+defaults to the version of PE on the agent (which means agent upgrades are armed
+unless a newer version is set in the class declaration or hieradata).
+
 
 
 ##Limitations

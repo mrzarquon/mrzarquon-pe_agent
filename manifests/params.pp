@@ -42,5 +42,5 @@ class pe_agent::params {
   $agent_environment = 'production'
   $staging_dir = '/tmp/puppet-enterprise-installer'
   $windows_source = 'nil'
-  $version = $::serverversion
+  $version = $::pe_version
 }
