@@ -72,11 +72,13 @@ PE Agent installation files.  This defaults to PE's default: /tmp/puppet-enterpr
 
 A UNC path to a publicly-readable SMB share that contains the PE Agent for Windows
 MSI files.  Ensure that both 32-bit and 64-bit installers are hosted there; the
-default file names are assumed.
+default file names are assumed.  The author recommends the use of Distributed File
+Services (DFS) namespaces with multiple folder targets to efficiently provide a single
+UNC path to the files for multi-site deployments.
 
 ####`version`
 
-The desired version of the agent to install.  This is applicable to the AIX,
+The desired version of the PE agent to install.  This is applicable to the AIX,
 Solaris, and Windows agents since they don't support package => latest.  This
 defaults to the version of PE on the agent (which means agent upgrades are armed
 unless a newer version is set in the class declaration or hieradata).
@@ -85,5 +87,9 @@ unless a newer version is set in the class declaration or hieradata).
 
 ##Limitations
 
-This module has been tested only on upgrading EL 6 3.1 agent to 3.2, note lack of
-tests folder or spec tests, and the 0.0.X status :-D
+This module depends completely on the correct pe_repo classes being added to the target
+Puppet Enterprise master servers.  If agent installers aren't present, the install class
+of this module will fail.  Best practice is to add pe_repo classes corresponding to
+the OS families and architectures of all nodes managed in your infrastructure.
+
+Windows support requires
