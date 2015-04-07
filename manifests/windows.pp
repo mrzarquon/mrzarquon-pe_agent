@@ -1,4 +1,7 @@
 # Windows package installation
+# The Windows pe-agent files are not hosted in pe_repo, so we use a UNC share
+#  to hold the PE agent MSIs, which are installed by the Windows package
+#  provider
 class pe_agent::windows inherits pe_agent {
   case $::architecture {
     'x86': {

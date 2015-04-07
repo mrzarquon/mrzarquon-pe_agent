@@ -1,4 +1,6 @@
 # AIX agent installation
+# AIX doesn't support pe-agent as a package, so we use a modification of 
+#  the PE curl-based installation
 class pe_agent::aix inherits pe_agent {
   if $::pe_version != $version {
 

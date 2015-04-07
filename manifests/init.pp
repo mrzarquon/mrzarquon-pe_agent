@@ -31,6 +31,9 @@ class pe_agent (
   validate_string($agent_server)
   validate_string($agent_caserver)
   validate_string($agent_environment)
+  validate_string($staging_dir)
+  validate_string($windows_source)
+  validate_string($version)
 
   class { '::pe_agent::install': } ->
   class { '::pe_agent::config': } ->

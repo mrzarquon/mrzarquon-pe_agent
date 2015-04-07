@@ -1,4 +1,6 @@
 # Solaris agent installation
+# Solaris doesn't support pe-agent as a package, so we use a modification of 
+#  the PE curl-based installation
 class pe_agent::solaris inherits pe_agent {
   if $::pe_version != $version {
 
