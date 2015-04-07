@@ -66,14 +66,12 @@ Defaults to nil and does not manage the settings unless overridden in node class
 ####`staging_dir`
 
 The directory that will be used on AIX and Solaris hosts to temporarily hold the
-PE Agent installation files.  This defaults to PE's default:
-
-  /tmp/puppet-enterprise-installer
+PE Agent installation files.  This defaults to PE's default: /tmp/puppet-enterprise-installer
 
 ####`windows_source`
 
 A UNC path to a publicly-readable SMB share that contains the PE Agent for Windows
-MSI files.  Ensure that both 32-bit and 64-bit installers are hosted there; the 
+MSI files.  Ensure that both 32-bit and 64-bit installers are hosted there; the
 default file names are assumed.
 
 ####`version`
